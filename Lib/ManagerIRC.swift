@@ -125,10 +125,77 @@ open class ManagerIRC: NSObject, StreamDelegate {
     }
 }
 
+open class ManagerIRCCollection {
+    var ircManagers: [ManagerIRC] = []
+    
+    public init(username: String, password: String, host: CFString, port: UInt32, channels: [String]) {
+        for channel in channels {
+            ircManagers.append(ManagerIRC(username: username, password: password, host: host, port: port, channel: channel))
+        }
+    }
+    
+    open func assignDelegates(delegate: ManagerIRCDelegate) {
+        for ircManager in ircManagers {
+            ircManager.delegate = delegate
+        }
+    }
+    
+    open func openStreams() {
+        for ircManager in ircManagers {
+            ircManager.open()
+        }
+    }
+}
+
 @objc public protocol ManagerIRCDelegate {
     func processInput(host: CFString, port: UInt32, username: String, channel: String, line: String, irc: ManagerIRC)
     
     @objc optional func connectionStateChanged(connectionState: UInt8)
     
     @objc optional func streamEventHappened(event: UInt)
+}
+
+public extension ManagerIRCDelegate {
+    public static func parseInput(input: String) -> (from: String?, response: String?, args: [String?]) {
+        var output: (from: String?, response: String?, args: [String?])
+        
+        output.from = nil
+        output.args = []
+        
+        var inputSeparated = input.components(separatedBy: " ")
+        
+        if inputSeparated.count < 3 {
+            output.response = inputSeparated.accessFilled(at: 0)
+            output.args.append(inputSeparated.accessFilled(at: 1))
+        } else {
+            if var from = inputSeparated.accessFilled(at: 0)?.components(separatedBy: "!").accessFilled(at: 0) {
+                from.remove(at: from.startIndex)
+                output.from = from
+            }
+            
+            output.response = inputSeparated.accessFilled(at: 1)
+            
+            let parseOffset = 2
+            
+            let parseArray = inputSeparated[parseOffset..<inputSeparated.endIndex]
+            for (parseWordIndex, parseWord) in parseArray.enumerated() {
+                if parseWord.beginsWith(string: ":") {
+                    var string = ""
+                    let stringArray = parseArray[parseWordIndex+parseOffset..<parseArray.endIndex]
+                    for (stringWordIndex, stringWord) in stringArray.enumerated() {
+                        if stringWordIndex != stringArray.endIndex && stringWordIndex != stringArray.startIndex {
+                            string += " "
+                        }
+                        string += stringWord
+                    }
+                    output.args.append(string)
+                    break
+                } else {
+                    output.args.append(parseWord)
+                }
+            }
+        }
+        
+        return output
+    }
 }
