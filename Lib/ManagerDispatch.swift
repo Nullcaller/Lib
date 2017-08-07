@@ -8,15 +8,15 @@
 
 import Foundation
 
-open class Dispatch {
-    public static func manage(qos: DispatchQoS.QoSClass, finalization: DispatchFinalization, branches: () -> ()...) {
-        let event = DispatchFinalizationEvent(branchCount: branches.count)
+open class ManagerDispatch {
+    public static func manage(qos: DispatchQoS.QoSClass, finalization: ManagerDispatchFinalization, branches: () -> ()...) {
+        let event = ManagerDispatchFinalizationEvent(branchCount: branches.count)
         finalization.bindEvent(event: event)
         
-        for i in 0..<branches.count {
+        for (index, branch) in branches.enumerated() {
             DispatchQueue.global(qos: qos).async {
-                branches[i]()
-                event.setCompleted(id: i)
+                branch()
+                event.setCompleted(id: index)
                 
                 DispatchQueue.main.async {
                     finalization.try()
@@ -26,15 +26,15 @@ open class Dispatch {
     }
 }
 
-open class DispatchFinalization {
+open class ManagerDispatchFinalization {
     private var action: () -> ()
-    private var event: DispatchFinalizationEvent?
+    private var event: ManagerDispatchFinalizationEvent?
     
     public init(_ action: @escaping () -> ()) {
         self.action = action
     }
     
-    func bindEvent(event: DispatchFinalizationEvent) {
+    func bindEvent(event: ManagerDispatchFinalizationEvent) {
         self.event = event
     }
     
@@ -46,7 +46,7 @@ open class DispatchFinalization {
     }
 }
 
-class DispatchFinalizationEvent {
+class ManagerDispatchFinalizationEvent {
     private var completionRegistry: [Bool] = []
     var isProcessed = false
     

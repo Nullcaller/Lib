@@ -8,28 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		BA23438F1F2335F2003E10C9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23438E1F2335F2003E10C9 /* main.swift */; };
-		BA23BFAE1F29E9A2001B5EEC /* IRCBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23BFAD1F29E9A2001B5EEC /* IRCBridge.swift */; };
-		BAACAB501F24B9C5002C7B94 /* Out.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAACAB4F1F24B9C5002C7B94 /* Out.swift */; };
+		BA23BFAE1F29E9A2001B5EEC /* ManagerIRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23BFAD1F29E9A2001B5EEC /* ManagerIRC.swift */; };
+		BA6A2FB01F33197D00ABC71C /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2FAF1F33197D00ABC71C /* Array.swift */; };
+		BA73849B1F31B39D008B7A48 /* Neuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA73849A1F31B39D008B7A48 /* Neuron.swift */; };
+		BAA0A2101F35E3570057EB17 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A20F1F35E3570057EB17 /* String.swift */; };
+		BAACAB501F24B9C5002C7B94 /* ManagerOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAACAB4F1F24B9C5002C7B94 /* ManagerOut.swift */; };
 		BAF9B05D1F22819100DC2851 /* Lib.h in Headers */ = {isa = PBXBuildFile; fileRef = BAF9B05B1F22819100DC2851 /* Lib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BAF9B0671F2281FE00DC2851 /* PhaseRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B0631F2281FE00DC2851 /* PhaseRunner.swift */; };
-		BAF9B0681F2281FE00DC2851 /* LocalizationCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B0641F2281FE00DC2851 /* LocalizationCollection.swift */; };
-		BAF9B0691F2281FE00DC2851 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B0651F2281FE00DC2851 /* ApplicationDelegate.swift */; };
+		BAF9B0671F2281FE00DC2851 /* ManagerPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B0631F2281FE00DC2851 /* ManagerPhase.swift */; };
+		BAF9B0681F2281FE00DC2851 /* ManagerLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B0641F2281FE00DC2851 /* ManagerLocalization.swift */; };
+		BAF9B0691F2281FE00DC2851 /* ManagerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B0651F2281FE00DC2851 /* ManagerApplication.swift */; };
 		BAF9B06A1F2281FE00DC2851 /* EventWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B0661F2281FE00DC2851 /* EventWrapper.swift */; };
-		BAF9B06C1F22838C00DC2851 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B06B1F22838C00DC2851 /* Dispatch.swift */; };
+		BAF9B06C1F22838C00DC2851 /* ManagerDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9B06B1F22838C00DC2851 /* ManagerDispatch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BA23438E1F2335F2003E10C9 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		BA23BFAD1F29E9A2001B5EEC /* IRCBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IRCBridge.swift; sourceTree = "<group>"; };
-		BAACAB4F1F24B9C5002C7B94 /* Out.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Out.swift; sourceTree = "<group>"; };
+		BA23BFAD1F29E9A2001B5EEC /* ManagerIRC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIRC.swift; sourceTree = "<group>"; };
+		BA6A2FAF1F33197D00ABC71C /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		BA73849A1F31B39D008B7A48 /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Neuron.swift; sourceTree = "<group>"; };
+		BAA0A20F1F35E3570057EB17 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		BAACAB4F1F24B9C5002C7B94 /* ManagerOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerOut.swift; sourceTree = "<group>"; };
 		BAF9B0581F22819100DC2851 /* Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF9B05B1F22819100DC2851 /* Lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lib.h; sourceTree = "<group>"; };
 		BAF9B05C1F22819100DC2851 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAF9B0631F2281FE00DC2851 /* PhaseRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseRunner.swift; sourceTree = "<group>"; };
-		BAF9B0641F2281FE00DC2851 /* LocalizationCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationCollection.swift; sourceTree = "<group>"; };
-		BAF9B0651F2281FE00DC2851 /* ApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
+		BAF9B0631F2281FE00DC2851 /* ManagerPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerPhase.swift; sourceTree = "<group>"; };
+		BAF9B0641F2281FE00DC2851 /* ManagerLocalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerLocalization.swift; sourceTree = "<group>"; };
+		BAF9B0651F2281FE00DC2851 /* ManagerApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerApplication.swift; sourceTree = "<group>"; };
 		BAF9B0661F2281FE00DC2851 /* EventWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventWrapper.swift; sourceTree = "<group>"; };
-		BAF9B06B1F22838C00DC2851 /* Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatch.swift; sourceTree = "<group>"; };
+		BAF9B06B1F22838C00DC2851 /* ManagerDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerDispatch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,12 +49,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BA23438D1F2333BD003E10C9 /* deprecated */ = {
+		BA23438D1F2333BD003E10C9 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
 				BAF9B0661F2281FE00DC2851 /* EventWrapper.swift */,
 			);
-			name = deprecated;
+			name = Deprecated;
+			sourceTree = "<group>";
+		};
+		BA6A2FAE1F33196D00ABC71C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BA6A2FAF1F33197D00ABC71C /* Array.swift */,
+				BAA0A20F1F35E3570057EB17 /* String.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		BA7384971F31B339008B7A48 /* NeuralNetworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA73849A1F31B39D008B7A48 /* Neuron.swift */,
+			);
+			name = NeuralNetworks;
+			sourceTree = "<group>";
+		};
+		BA9EE0A41F324494000DB0C5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BA23BFAD1F29E9A2001B5EEC /* ManagerIRC.swift */,
+				BAF9B0631F2281FE00DC2851 /* ManagerPhase.swift */,
+				BAF9B0641F2281FE00DC2851 /* ManagerLocalization.swift */,
+				BAF9B0651F2281FE00DC2851 /* ManagerApplication.swift */,
+				BAF9B06B1F22838C00DC2851 /* ManagerDispatch.swift */,
+				BAACAB4F1F24B9C5002C7B94 /* ManagerOut.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		BAF9B04E1F22819100DC2851 = {
@@ -70,13 +106,10 @@
 		BAF9B05A1F22819100DC2851 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				BA23438D1F2333BD003E10C9 /* deprecated */,
-				BA23BFAD1F29E9A2001B5EEC /* IRCBridge.swift */,
-				BAF9B0631F2281FE00DC2851 /* PhaseRunner.swift */,
-				BAF9B0641F2281FE00DC2851 /* LocalizationCollection.swift */,
-				BAF9B0651F2281FE00DC2851 /* ApplicationDelegate.swift */,
-				BAF9B06B1F22838C00DC2851 /* Dispatch.swift */,
-				BAACAB4F1F24B9C5002C7B94 /* Out.swift */,
+				BA6A2FAE1F33196D00ABC71C /* Common */,
+				BA23438D1F2333BD003E10C9 /* Deprecated */,
+				BA7384971F31B339008B7A48 /* NeuralNetworks */,
+				BA9EE0A41F324494000DB0C5 /* Managers */,
 				BA23438E1F2335F2003E10C9 /* main.swift */,
 				BAF9B05B1F22819100DC2851 /* Lib.h */,
 				BAF9B05C1F22819100DC2851 /* Info.plist */,
@@ -166,13 +199,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA23438F1F2335F2003E10C9 /* main.swift in Sources */,
-				BAF9B0691F2281FE00DC2851 /* ApplicationDelegate.swift in Sources */,
-				BA23BFAE1F29E9A2001B5EEC /* IRCBridge.swift in Sources */,
-				BAF9B0681F2281FE00DC2851 /* LocalizationCollection.swift in Sources */,
+				BAA0A2101F35E3570057EB17 /* String.swift in Sources */,
+				BAF9B0691F2281FE00DC2851 /* ManagerApplication.swift in Sources */,
+				BA23BFAE1F29E9A2001B5EEC /* ManagerIRC.swift in Sources */,
+				BAF9B0681F2281FE00DC2851 /* ManagerLocalization.swift in Sources */,
 				BAF9B06A1F2281FE00DC2851 /* EventWrapper.swift in Sources */,
-				BAACAB501F24B9C5002C7B94 /* Out.swift in Sources */,
-				BAF9B0671F2281FE00DC2851 /* PhaseRunner.swift in Sources */,
-				BAF9B06C1F22838C00DC2851 /* Dispatch.swift in Sources */,
+				BA73849B1F31B39D008B7A48 /* Neuron.swift in Sources */,
+				BAACAB501F24B9C5002C7B94 /* ManagerOut.swift in Sources */,
+				BA6A2FB01F33197D00ABC71C /* Array.swift in Sources */,
+				BAF9B0671F2281FE00DC2851 /* ManagerPhase.swift in Sources */,
+				BAF9B06C1F22838C00DC2851 /* ManagerDispatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

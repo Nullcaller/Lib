@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class LocalizationCollection {
+open class ManagerLozalization {
     public var locales: [String: [String: String]] = [:]
     public var active: String = "en"
     

@@ -8,6 +8,6 @@
 
 import Foundation
 
-public func main(_ action: @escaping () -> (Int32) ) {
+public func Managed(_ action: @escaping () -> (Int32) ) {
     exit(action())
 }

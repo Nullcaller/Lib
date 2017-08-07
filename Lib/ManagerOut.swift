@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol Out {
+public protocol ManagerOut {
     func putOut(out: String)
 }

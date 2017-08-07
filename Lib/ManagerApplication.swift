@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-open class ApplicationDelegate: NSObject, NSApplicationDelegate {
+open class ManagerApplication: NSObject, NSApplicationDelegate {
     public let application = NSApplication.shared()
     
     public override init() {

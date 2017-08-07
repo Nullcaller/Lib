@@ -8,19 +8,13 @@
 
 import Foundation
 
-open class PhaseRunner {
-    var sequence: [() -> (Int32)]?
-    
-    public init(_ sequence: () -> (Int32)...) {
-        self.sequence = sequence
-    }
-    
-    public func setSequence(_ sequence: () -> (Int32)...) {
-        self.sequence = sequence
-    }
-    
+public protocol ManagerPhase {
+    var sequence: [() -> (Int32)] { get }
+}
+
+public extension ManagerPhase {
     public func run() -> Int32 {
-        for action in sequence! {
+        for action in sequence {
             let `return` = action()
             if(`return` != 0) {
                 return `return`
