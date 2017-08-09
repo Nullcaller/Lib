@@ -10,7 +10,7 @@ import Foundation
 
 open class ManagerIRC: NSObject, StreamDelegate {
     enum ConnectionState: UInt8 {
-        case none = 0, initialized = 1, opened = 2, authenticated = 3, joined = 4
+        case none = 0, initialized = 1, opened = 2, sentPassword = 3, sentNickname = 4, sentJoin = 5
     }
     
     var connectionState: ConnectionState = .none
@@ -68,32 +68,45 @@ open class ManagerIRC: NSObject, StreamDelegate {
     internal func process() {
         switch connectionState {
             case .opened:
-                query("PASS \(password)")
-            
-                query("NICK \(username)")
-            
-                changeConnectionState(state: .authenticated)
+                if query("PASS \(password)") == 0 {
+                    changeConnectionState(state: .sentPassword)
+                }
                 return
-            case .authenticated:
-                query("JOIN #\(channel)")
-            
-                changeConnectionState(state: .joined)
+            case .sentPassword:
+                if query("NICK \(username)") == 0 {
+                    changeConnectionState(state: .sentNickname)
+                }
+                return
+            case .sentNickname:
+                if query("JOIN #\(channel)") == 0 {
+                    changeConnectionState(state: .sentJoin)
+                }
                 return
             default:
                 return
         }
     }
     
-    open func message(_ message: String) -> Bool {
-        return query("PRIVMSG #\(channel) :\(message)")
+    open func message(_ message: String, ignoreLimit: Bool = false) -> Int32 {
+        return query("PRIVMSG #\(channel) :\(message)", ignoreLimit: ignoreLimit)
     }
     
-    open func query(_ query: String) -> Bool {
+    open func query(_ query: String, ignoreLimit: Bool = false) -> Int32 {
         let fixedQuery = query + "\r\n"
         let length = fixedQuery.lengthOfBytes(using: String.Encoding.utf8)
         let data = [UInt8](fixedQuery.utf8)
         
-        return outputStream.write(data, maxLength: length) == data.count
+        if (delegate != nil && delegate!.canSend()) || ignoreLimit {
+            let successful = outputStream.write(data, maxLength: length) == data.count
+            if successful {
+                delegate?.messageDates.append(Date())
+                return 0
+            } else {
+                return 1
+            }
+        } else {
+            return 2
+        }
     }
     
     public func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
@@ -116,8 +129,8 @@ open class ManagerIRC: NSObject, StreamDelegate {
                     }
                 }
             case Stream.Event.hasSpaceAvailable:
-                if aStream == outputStream && connectionState != .joined {
-                    process()
+                if aStream == outputStream {
+                    self.process()
                 }
             default:
                 delegate?.streamEventHappened?(event: eventCode.rawValue)
@@ -126,7 +139,7 @@ open class ManagerIRC: NSObject, StreamDelegate {
 }
 
 open class ManagerIRCCollection {
-    var ircManagers: [ManagerIRC] = []
+    open var ircManagers: [ManagerIRC] = []
     
     public init(username: String, password: String, host: CFString, port: UInt32, channels: [String]) {
         for channel in channels {
@@ -147,9 +160,14 @@ open class ManagerIRCCollection {
     }
 }
 
-@objc public protocol ManagerIRCDelegate {
-    func processInput(host: CFString, port: UInt32, username: String, channel: String, line: String, irc: ManagerIRC)
+public protocol ManagerIRCDelegate: ManagerIRCEventHandler {
+    var messageLimit: (amount: Int, time: Int) { get set }
+    var messageDates: [Date] { get set }
     
+    func processInput(host: CFString, port: UInt32, username: String, channel: String, line: String, irc: ManagerIRC)
+}
+
+@objc public protocol ManagerIRCEventHandler {
     @objc optional func connectionStateChanged(connectionState: UInt8)
     
     @objc optional func streamEventHappened(event: UInt)
@@ -197,5 +215,23 @@ public extension ManagerIRCDelegate {
         }
         
         return output
+    }
+    
+    public func updateDates() {
+        var newDates: [Date] = []
+        let currentDate = Date()
+        for date in messageDates {
+            if let seconds = NSCalendar.current.dateComponents([ .second ], from: date, to: currentDate).second {
+                if seconds < messageLimit.time {
+                    newDates.append(date)
+                }
+            }
+        }
+        messageDates = newDates
+    }
+    
+    public func canSend(_ messageLimit: (amount: Int, time: Int)? = nil) -> Bool {
+        updateDates()
+        return messageDates.count < (messageLimit ?? self.messageLimit).amount
     }
 }
